@@ -61,10 +61,10 @@ function Questions({ user }) {
       .then(() => {
         setCreating(false);
         navigator.clipboard.writeText(
-          `http://localhost:3000/write?uid=${user?.uid}&qid=${qid}&qa=true`
+          `https://resox-m.vercel.app/write?uid=${user?.uid}&qid=${qid}&qa=true`
         );
         setLink(
-          `http://localhost:3000/write?uid=${user?.uid}&qid=${qid}&qa=true`
+          `https://resox-m.vercel.app/write?uid=${user?.uid}&qid=${qid}&qa=true`
         );
         let box = document.querySelector("#form_ready");
         box.style.display = "block";
