@@ -1,0 +1,44 @@
+.nav {
+  padding: 0 5% 0;
+  background: white;
+}
+
+.nav__logo {
+  cursor: pointer;
+}
+
+.nav__ln {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__ln li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 8px 10px;
+  font-weight: 500;
+  transition: all 0.5s linear;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.nav__ln .nav__ctr {
+  background: #575a89;
+  color: white;
+  padding: 8px 20px;
+}
+
+.nav__ln li:hover {
+  color: #575a89;
+}
+
+.nav__ln .nav__ctr:hover {
+  color: white;
+}
+
+.nav ul {
+  margin: 0;
+  padding-left: 0;
+}

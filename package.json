@@ -1,0 +1,23 @@
+{
+  "name": "resox",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "firebase": "^9.6.6",
+    "next": "12.0.8",
+    "react": "17.0.2",
+    "react-currency-formatter": "^1.1.0",
+    "react-dom": "17.0.2",
+    "react-firebase-hooks": "^5.0.2",
+    "uuidv4": "^6.2.12"
+  },
+  "devDependencies": {
+    "eslint": "8.6.0",
+    "eslint-config-next": "12.0.8"
+  }
+}
