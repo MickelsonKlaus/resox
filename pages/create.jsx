@@ -38,10 +38,10 @@ function Create({ user }) {
     })
       .then(() => {
         navigator.clipboard.writeText(
-          `http://localhost:3000/write?uid=${user?.uid}&mid=${mid}&qa=false`
+          `https://resox-m.vercel.app/write?uid=${user?.uid}&mid=${mid}&qa=false`
         );
         setLink(
-          `http://localhost:3000/write?uid=${user?.uid}&mid=${mid}&qa=false`
+          `https://resox-m.vercel.app/write?uid=${user?.uid}&mid=${mid}&qa=false`
         );
         let box = document.querySelector("#link_copied");
         box.style.display = "block";
