@@ -37,7 +37,7 @@ export default function Home() {
               </fieldset>
             </div>
             <div>
-              <h4>Create an anonymous message</h4>
+              <h4>Create an anonymous poll / questions</h4>
               <fieldset>
                 <legend>2</legend>
               </fieldset>
