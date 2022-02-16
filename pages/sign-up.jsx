@@ -12,7 +12,7 @@ import { withPublic } from "../Hooks/Routes";
 
 function SignUp() {
   let { _uid } = useRouter().query;
-  console.log(_uid);
+  //console.log(_uid);
   let email = useRef("");
   let password = useRef("");
   let confirmPassword = useRef("");
