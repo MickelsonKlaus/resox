@@ -45,7 +45,7 @@ function Dashboard({ user }) {
 
       let messagesRef = collection(doc(userRef, user.uid), "messages");
 
-      let q = query(messagesRef, limit(1), orderBy("date"));
+      let q = query(messagesRef, orderBy("date", " desc"), limit(1));
 
       const querySnapshot = await getDocs(q);
       let messagesData = [];
