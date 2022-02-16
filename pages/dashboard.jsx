@@ -52,9 +52,12 @@ function Dashboard({ user }) {
       querySnapshot.forEach((doc) => {
         messagesData.push({ id: doc.id, ...doc.data() });
       });
-let latestMessage=[messagesData[0]]
+if(messagesData.length > 0){
+
+}let latestMessage=[messagesData[0]]
       setMessages(latestMessage);
     }
+
 
     getData();
   }, [user, data, dispatch]);
