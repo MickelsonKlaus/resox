@@ -54,9 +54,9 @@ function Dashboard({ user }) {
       });
 if(messagesData.length > 0){
 
-}let latestMessage=[messagesData[0]]
+let latestMessage=[messagesData[0]]
       setMessages(latestMessage);
-    }
+    }}
 
 
     getData();
