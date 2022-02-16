@@ -1,4 +1,4 @@
-Poll rt React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardNav from "../Components/DashboardNav";
 import Message from "../Components/Message";
 import styles from "../styles/dashboard.module.css";
