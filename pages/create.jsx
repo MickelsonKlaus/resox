@@ -88,7 +88,7 @@ function Create({ user }) {
           <div className={styles.circle}>
             <span></span>
           </div>
-          <p style={{ width: "fit-content", margin: "20px 0 10px" }}>
+          <p style={{ width: "fit-content", margin: "20px 0 10px", whiteSpace: "pre-wrap" }}>
             Share the link (<b>{link}</b>) with you friends.
           </p>
         </div>
