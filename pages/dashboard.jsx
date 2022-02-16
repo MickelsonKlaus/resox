@@ -94,7 +94,7 @@ function Dashboard({ user }) {
           <p style={{ width: "100%", fontSize: "0.9em" }}>
             Referrals link:{" "}
             <a
-              href={`http://localhost:3000/?referral=true&_uid=${user.uid}`}
+              href={`https://resox-m.vercel.app/?referral=true&_uid=${user.uid}`}
               target="_blank"
               style={{
                 display: "inline-block",
@@ -103,7 +103,7 @@ function Dashboard({ user }) {
               }}
               rel="noreferrer"
             >
-              http://localhost:3000/?referral=true&amp;_uid=${user.uid}
+              https://resox-m.vercel.app/?referral=true&amp;_uid=${user.uid}
             </a>
           </p>
         </div>
