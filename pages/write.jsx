@@ -191,7 +191,7 @@ function Write() {
         <div className={styles.circle}>
           <span></span>
         </div>
-        <p style={{ wordBreak: "break-word" }}>
+        <p>
           You too can start creating, earning and sharing with just few steps.{" "}
           <Link href="/">Start here</Link>
         </p>
