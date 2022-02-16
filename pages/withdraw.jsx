@@ -26,7 +26,7 @@ function Withdraw({ user }) {
         width={80}
         height={40}
         onClick={() => {
-          router.push("/");
+          router.push("/dashboard");
         }}
         className={styles.logo}
       />
@@ -56,7 +56,9 @@ function Withdraw({ user }) {
             <Input name="account number" type="text" Ref={accountNumber} />
             <label htmlFor="bnk">
               Bank
-              <select name="bank" id="bnk" Ref={bank}></select>
+              <select name="bank" id="bnk" Ref={bank}>
+<option>Select a bank</option>
+</select>
             </label>
             <Input name="amount" type="number" Ref={amount} />
             <button
