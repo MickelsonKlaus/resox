@@ -16,7 +16,7 @@ function Message({ message }) {
       <span className={styles.ball}></span>
       <h4>{dateFunc(new Date(message?.date.toDate().toString()))}</h4>
       <div className={styles.msg__single}>
-        {message.isQuestion
+        {message?.isQuestions
           ? message?.messages.map((_, i) => {
               return (
                 <div key={i} className={styles.single}>
