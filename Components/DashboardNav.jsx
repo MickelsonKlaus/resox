@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../styles/Nav.module.css";
 import { signOut } from "firebase/auth";

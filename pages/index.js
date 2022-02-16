@@ -1,15 +1,15 @@
 import styles from "../styles/Home.module.css"
 import Image from "next/image"
-import Link from "next/Link"
+import Link from "next/link"
 import Nav from "../Components/Nav";
 import Header from "../Components/Header";
 import { useRouter } from "next/router";
 
 export default function Home() {
-  let { _uid} = useRouter().query;
+  let { _uid } = useRouter().query;
   return (
     <div>
-      <Nav id={_uid}/>
+      <Nav id={_uid} />
       <Header title="Redox - More than anonymous messaging" />
       <div className={styles.hmes}>
         <div>

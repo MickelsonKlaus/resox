@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import DashboardNav from "../Components/DashboardNav";
 import styles from "../styles/dashboard.module.css";
 import { withPrivate } from "../Hooks/Routes";

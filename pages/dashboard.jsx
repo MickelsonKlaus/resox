@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import DashboardNav from "../Components/DashboardNav";
 import Header from "../Components/Header";
 import styles from "../styles/dashboard.module.css";

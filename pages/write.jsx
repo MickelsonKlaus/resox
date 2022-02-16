@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import { useRef, useState, useEffect } from "react";
 import Answer from "../Components/Answer";

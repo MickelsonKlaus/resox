@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import styles from "../styles/Lsg.module.css";
 import Input from "../Components/Input";
 import { useRef } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import Header from "../Components/Header";
 import { auth } from "../firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";

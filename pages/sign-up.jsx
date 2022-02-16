@@ -3,7 +3,7 @@ import Router, { useRouter } from "next/router";
 import styles from "../styles/Lsg.module.css";
 import Input from "../Components/Input";
 import { useRef, useState } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import Header from "../Components/Header";
 import { auth, db } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
