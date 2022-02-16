@@ -115,7 +115,7 @@ function Questions({ user }) {
           <div className={styles.circle}>
             <span></span>
           </div>
-          <p style={{ wordBreak: "break-word" }}>
+          <p style={{whiteSpace: "pre-wrap" }}>
             Copied. Share link (<b>{link}</b>) with friends
           </p>
         </div>
