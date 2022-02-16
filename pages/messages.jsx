@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+Poll rt React, { useEffect, useState } from "react";
 import DashboardNav from "../Components/DashboardNav";
 import Message from "../Components/Message";
 import styles from "../styles/dashboard.module.css";
@@ -17,7 +17,7 @@ function Messages({ user }) {
 
       let messagesRef = collection(doc(userRef, user.uid), "messages");
 
-      let q = query(messagesRef, orderBy("date"));
+      let q = query(messagesRef, orderBy("date", "desc"));
 
       const querySnapshot = await getDocs(q);
       let messagesData = [];
