@@ -52,8 +52,8 @@ function Dashboard({ user }) {
       querySnapshot.forEach((doc) => {
         messagesData.push({ id: doc.id, ...doc.data() });
       });
-
-      setMessages(messagesData);
+let latestMessage=[messagesData[0]]
+      setMessages(latestMessage);
     }
 
     getData();
