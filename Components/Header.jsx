@@ -21,7 +21,7 @@ function Header({ title }) {
 <meta property="twitter:title" content="Redox - More than anonymous messaging"/>
 <meta property="twitter:description" content="Create anonymous messages and questions, share to friends and earn from every message or answer you receive from them. Also earn from referrals."/>
 <meta property="twitter:image" content="https://resox-m.vercel.app/undraw_New_message_re_fp03.png"/>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9139701609499388"
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9998565672672812"
      crossorigin="anonymous"></script>
         </Head>
     );
