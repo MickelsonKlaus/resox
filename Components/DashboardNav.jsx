@@ -24,7 +24,7 @@ function DashboardNav() {
               height={40}
               className={styles.nav__logo}
               onClick={() => {
-                router.push("/dashboard");
+                router.push("/");
               }}
             />
           </li>
