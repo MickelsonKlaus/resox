@@ -9,7 +9,7 @@ export function withPublic(Component) {
         let Router = useRouter()
 
         if (user) {
-            Router.replace("/")
+            Router.replace("/dashboard")
             return <div id="Gloader"></div>
         }
         return <Component {...props} />
