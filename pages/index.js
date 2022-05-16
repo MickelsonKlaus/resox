@@ -84,9 +84,7 @@ export default function Home() {
         </div>
       </div>
       <footer className={styles.footer}>
-        <Link href="/terms-conditions">Terms &amp; Conditions</Link>
         <p>Copywright &copy; {new Date().getFullYear()} | All rights reserved</p>
-        <Link href="mailto:help@redox.com">help@redox.com</Link>
       </footer>
     </div>
   )

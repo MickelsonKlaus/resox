@@ -37,12 +37,13 @@ function Messages({ user }) {
       <Header title="Messages from Anonymous Sender - Redox" />
       <div className={styles.msg__heading}>
         <h3>Anonymous messages</h3>
-        <button>Clear messages</button>
       </div>
       <div className={styles.messages}>
         {messages.length > 0 ? (
           messages.map((message) => {
-            return <Message key={message.id} message={message} />;
+            if (message.messages.length > 0) {
+              return <Message key={message.id} message={message} />;
+            }
           })
         ) : (
           <div>

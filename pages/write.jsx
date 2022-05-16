@@ -24,6 +24,7 @@ function Write() {
   let { uid, mid, qa, qid } = useRouter().query;
   let [{ answers }] = useStateValue();
   let [sent, setSent] = useState(false);
+  let [sending, setSending] = useState(false);
   let [questions, setQuestions] = useState({});
 
   useEffect(() => {
@@ -53,6 +54,7 @@ function Write() {
       messagesLength: increment(1),
       earnings: increment(0.5),
     });
+
     updateDoc(doc(messageRef, mid), {
       messages: arrayUnion({
         id: v4(),
@@ -65,10 +67,15 @@ function Write() {
         box.style.display = "block";
         box.style.opacity = "1";
         message.current.value = "";
+        setSending(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setSending(false);
+      });
   };
   let sendAnswers = () => {
+    setSending(true);
     let userRef = doc(dbRef, uid);
     let messageRef = collection(userRef, "messages");
 
@@ -90,8 +97,12 @@ function Write() {
           box.style.display = "block";
           box.style.opacity = "1";
           setSent(true);
+          setSending(false);
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+          console.error(err);
+          setSending(false);
+        });
     }
   };
 
@@ -120,7 +131,13 @@ function Write() {
             sendmessage();
           }}
         >
-          <h3 style={{ margin: "0 auto", textAlign: "center" }}>
+          <h3
+            style={{
+              margin: "0 auto",
+              textAlign: "center",
+              marginBottom: "5px",
+            }}
+          >
             Send an anonymous message (Reply anonymously)
           </h3>
           <label htmlFor="txt">
@@ -130,11 +147,17 @@ function Write() {
               id="txt"
               cols="30"
               rows="10"
-              required
+              required={true}
               ref={message}
             ></textarea>
           </label>
-          <button type="submit">Send</button>
+          <button
+            type="submit"
+            disabled={sending}
+            style={{ opacity: sending ? "0.5" : "1" }}
+          >
+            {sending ? "Sending" : "Send"}
+          </button>
         </form>
       ) : sent ? (
         <p style={{ textAlign: "center" }}>
@@ -179,7 +202,13 @@ function Write() {
             )}
           </ol>
           {Object.keys(questions).length > 0 && (
-            <button type="submit">Send</button>
+            <button
+              type="submit"
+              disabled={sending}
+              style={{ opacity: sending ? "0.5" : "1" }}
+            >
+              {sending ? "Sending" : "Send"}
+            </button>
           )}
         </form>
       )}
@@ -187,7 +216,7 @@ function Write() {
         <span className={styles.close} onClick={close}>
           X
         </span>
-        <h3>Sent</h3>
+        <h3>Reply Sent</h3>
         <div className={styles.circle}>
           <span></span>
         </div>

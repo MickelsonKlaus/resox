@@ -18,9 +18,12 @@ import Header from "../Components/Header";
 
 function Create({ user }) {
   let [link, setLink] = useState("");
+  let [Loading, setLoading] = useState(false);
   let dbRef = collection(db, "users");
   let mid = v4();
+
   let createQuickLink = async () => {
+    setLoading(true);
     let userRef = doc(dbRef, user.uid);
     let messageRef = collection(userRef, "messages");
 
@@ -37,6 +40,7 @@ function Create({ user }) {
       ),
     })
       .then(() => {
+        setLoading(false);
         navigator.clipboard.writeText(
           `https://resox-m.vercel.app/write?uid=${user?.uid}&mid=${mid}&qa=false`
         );
@@ -49,6 +53,7 @@ function Create({ user }) {
       })
       .catch((err) => {
         console.error(err);
+        setLoading(false);
       });
   };
   let close = () => {
@@ -58,6 +63,7 @@ function Create({ user }) {
   };
   return (
     <>
+      {Loading && <div id="Gloader"></div>}
       <DashboardNav />
       <Header title="Create - Redox" />
       <div className={styles.create}>
@@ -84,12 +90,20 @@ function Create({ user }) {
           <span className={styles.close} onClick={close}>
             X
           </span>
-          <h3>Link Copied</h3>
+          <h3>Link has been copied to your clipboard</h3>
           <div className={styles.circle}>
             <span></span>
           </div>
-          <p style={{ width: "fit-content", margin: "20px 0 10px", whiteSpace: "pre-wrap" }}>
-            Share the link (<b>{link}</b>) with you friends.
+          <p
+            style={{
+              width: "fit-content",
+              margin: "20px 0 10px",
+              wordBreak: "break-word",
+              fontSize: ".8rem",
+            }}
+          >
+            Share the link (<b style={{ display: "inline-block" }}>{link}</b>)
+            with you friends.
           </p>
         </div>
       </div>

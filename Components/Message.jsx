@@ -2,10 +2,18 @@ import styles from "../styles/dashboard.module.css";
 
 function Message({ message }) {
   const dateFunc = (date) => {
-    let current = new Date().getDate();
-    if (date.getDate() === current) {
+    let current = new Date();
+    if (
+      date.getDate() === current.getDate() &&
+      date.getMonth() === current.getMonth() &&
+      date.getFullYear() === current.getFullYear()
+    ) {
       return "Today";
-    } else if (date.getDate() + 1 === current) {
+    } else if (
+      date.getDate() + 1 === current.getDate() &&
+      date.getMonth() === current.getMonth() &&
+      date.getFullYear() === current.getFullYear()
+    ) {
       return "Yesterday";
     } else {
       return `${date.toString()}`;

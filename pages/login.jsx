@@ -57,14 +57,14 @@ function Login() {
             <h3>Log into your account</h3>
             {error && (
               <p className={styles.err}>
-                {
+                {/* {
                   error?.message
                     .split(" ")[2]
                     .replace("(", "")
                     .replace(")", "")
                     .split("/")[1]
-                }{" "}
-                Please try again
+                }{" "} */}
+                Wrong password or email. Please try again
               </p>
             )}
             <Input name="email" type="email" Ref={email} />

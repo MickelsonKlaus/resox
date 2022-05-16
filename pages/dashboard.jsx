@@ -38,11 +38,6 @@ function Dashboard({ user }) {
         console.log("No such document!");
       }
 
-      dispatch({
-        type: "earnings",
-        item: data?.earnings || 0,
-      });
-
       let messagesRef = collection(doc(userRef, user.uid), "messages");
 
       let q = query(messagesRef, orderBy("date", "desc"));
@@ -52,14 +47,21 @@ function Dashboard({ user }) {
       querySnapshot.forEach((doc) => {
         messagesData.push({ id: doc.id, ...doc.data() });
       });
-if(messagesData.length > 0){
-
-let latestMessage=[messagesData[0]]
-      setMessages(latestMessage);
-    }}
-
+      if (messagesData.length > 0) {
+        let latestMessage = [messagesData[0]];
+        setMessages(latestMessage);
+      }
+    }
 
     getData();
+
+    if (data.earnings) {
+      dispatch({
+        type: "earnings",
+        item: data?.earnings || 0,
+      });
+    }
+    return;
   }, [user, data, dispatch]);
 
   return (
@@ -103,6 +105,7 @@ let latestMessage=[messagesData[0]]
                 display: "inline-block",
                 color: "#575a89",
                 maxWidth: "100%",
+                wordBreak: "break-word",
               }}
               rel="noreferrer"
             >
