@@ -1,11 +1,11 @@
 .dashboard {
   display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 600px));
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 550px));
+  gap: 10;
   place-content: center;
   width: 100%;
-  padding: 20px 5%;
+  padding: 20px;
 }
 
 .dashboard h1 {
@@ -470,8 +470,7 @@
 
 .rct li {
   list-style-position: inside;
-  padding: 10px 0;
-  padding-left: 5px;
+  padding: 10px 5px;
 }
 
 @media screen and (max-width: 520px) {
