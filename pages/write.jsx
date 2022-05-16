@@ -50,11 +50,6 @@ function Write() {
     let userRef = doc(dbRef, uid);
     let messageRef = collection(userRef, "messages");
 
-    updateDoc(userRef, {
-      messagesLength: increment(1),
-      earnings: increment(0.5),
-    });
-
     updateDoc(doc(messageRef, mid), {
       messages: arrayUnion({
         id: v4(),
@@ -68,6 +63,10 @@ function Write() {
         box.style.opacity = "1";
         message.current.value = "";
         setSending(false);
+        updateDoc(userRef, {
+          messagesLength: increment(1),
+          earnings: increment(0.5),
+        });
       })
       .catch((err) => {
         console.error(err);
