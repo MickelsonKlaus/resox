@@ -1,7 +1,10 @@
 export const initialState = {
     data: [],
     answers: [],
-    earnings: 0
+    earnings: 0,
+    userData: {},
+    messages: [],
+    latestMessage: []
 }
 
 export const reducer = (state, action) => {
@@ -34,6 +37,21 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 earnings: action.item
+            }
+        case "userData":
+            return {
+                ...state,
+                userData: action.item
+            }
+        case "latest":
+            return {
+                ...state,
+                latestMessage: action.item
+            }
+        case "messages":
+            return {
+                ...state,
+                messages: action.item
             }
         default:
             return { ...state }

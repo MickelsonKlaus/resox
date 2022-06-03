@@ -24,6 +24,19 @@ function Login() {
     }
   };
 
+  const loginF = () => {
+    fetch("api/login", {
+      method: "POST",
+      body: JSON.stringify({}),
+    })
+      .then(() => {
+        //if the user exists
+      })
+      .catch(() => {
+        //if the user does not exist
+      });
+  };
+
   return (
     <div className={styles.lg}>
       <Header title="Log into your account" />

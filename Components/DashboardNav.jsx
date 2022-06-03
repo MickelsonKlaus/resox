@@ -17,16 +17,17 @@ function DashboardNav() {
       <div className={styles.nav__ln}>
         <ul className={styles.cats}>
           <li>
-            <Image
-              src="/images-removebg-preview.png"
-              alt="logo"
-              width={80}
-              height={40}
-              className={styles.nav__logo}
-              onClick={() => {
-                router.push("/");
-              }}
-            />
+            <Link href="/dashboard" passHref>
+              <a>
+                <Image
+                  src="/images-removebg-preview.png"
+                  alt="logo"
+                  width={80}
+                  height={40}
+                  className={styles.nav__logo}
+                />
+              </a>
+            </Link>
           </li>
         </ul>
         <ul>

@@ -14,8 +14,11 @@ function Withdraw({ user }) {
   let accountNumber = useRef("");
   let bank = useRef("");
   let amount = useRef("");
-  let [{ earnings }] = useStateValue();
-  console.log(earnings);
+  let [
+    {
+      userData: { earnings },
+    },
+  ] = useStateValue();
 
   return (
     <div className={styles.lg}>
@@ -56,9 +59,9 @@ function Withdraw({ user }) {
             <Input name="account number" type="text" Ref={accountNumber} />
             <label htmlFor="bnk">
               Bank
-              <select name="bank" id="bnk" Ref={bank}>
-<option>Select a bank</option>
-</select>
+              <select name="bank" id="bnk" ref={bank}>
+                <option>Select a bank</option>
+              </select>
             </label>
             <Input name="amount" type="number" Ref={amount} />
             <button

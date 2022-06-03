@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import DashboardNav from "../Components/DashboardNav";
@@ -13,7 +13,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  limit,
   orderBy,
   query,
 } from "firebase/firestore";
@@ -21,48 +20,39 @@ import ReactCurrencyFormatter from "react-currency-formatter";
 import { useStateValue } from "../Hooks/StateProvider";
 
 function Dashboard({ user }) {
-  let [, dispatch] = useStateValue();
-  let [data, setData] = useState({});
-  let [messages, setMessages] = useState([]);
+  let [{ userData, latestMessage }, dispatch] = useStateValue();
 
   useEffect(() => {
-    async function getData() {
-      let userRef = collection(db, "users");
-      let userDoc = doc(userRef, user.uid);
-      const docSnap = await getDoc(userDoc);
+    if (Object.keys(userData).length === 0) {
+      async function getData() {
+        let userRef = collection(db, "users");
+        let userDoc = doc(userRef, user.uid);
+        const docSnap = await getDoc(userDoc);
 
-      if (docSnap.exists()) {
-        setData({ ...docSnap.data() });
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
+        if (docSnap.exists()) {
+          dispatch({ type: "userData", item: { ...docSnap.data() } });
+        } else {
+          console.log("No such document!");
+        }
+
+        let messagesRef = collection(doc(userRef, user.uid), "messages");
+
+        let q = query(messagesRef, orderBy("date", "desc"));
+
+        const querySnapshot = await getDocs(q);
+        let messagesData = [];
+        querySnapshot.forEach((doc) => {
+          messagesData.push({ id: doc.id, ...doc.data() });
+        });
+        if (messagesData.length > 0) {
+          let latestMessage = [messagesData[0]];
+          dispatch({ type: "latest", item: latestMessage });
+        }
       }
 
-      let messagesRef = collection(doc(userRef, user.uid), "messages");
-
-      let q = query(messagesRef, orderBy("date", "desc"));
-
-      const querySnapshot = await getDocs(q);
-      let messagesData = [];
-      querySnapshot.forEach((doc) => {
-        messagesData.push({ id: doc.id, ...doc.data() });
-      });
-      if (messagesData.length > 0) {
-        let latestMessage = [messagesData[0]];
-        setMessages(latestMessage);
-      }
+      getData();
     }
-
-    getData();
-
-    if (data.earnings) {
-      dispatch({
-        type: "earnings",
-        item: data?.earnings || 0,
-      });
-    }
-    return;
-  }, [user, data, dispatch]);
+  }, [user, userData, dispatch]);
 
   return (
     <div>
@@ -77,7 +67,7 @@ function Dashboard({ user }) {
               <h5>Earnings</h5>
               <h2>
                 <ReactCurrencyFormatter
-                  quantity={data?.earnings ? data?.earnings : 0}
+                  quantity={userData.earnings ? userData?.earnings : 0}
                   currency={"NGN"}
                 />
               </h2>
@@ -85,15 +75,15 @@ function Dashboard({ user }) {
             </div>
             <div>
               <h5>Anonymous Polls</h5>
-              <h2>{data?.anonymousLength || 0}</h2>
+              <h2>{userData?.anonymousLength || 0}</h2>
             </div>
             <div>
               <h5>Messages Received</h5>
-              <h2>{data?.messagesLength || 0}</h2>
+              <h2>{userData?.messagesLength || 0}</h2>
             </div>
             <div>
               <h5>Referrals</h5>
-              <h2>{data?.referrals || 0}</h2>
+              <h2>{userData?.referrals || 0}</h2>
             </div>
           </div>
           <p style={{ width: "100%", fontSize: "0.9em" }}>
@@ -115,7 +105,7 @@ function Dashboard({ user }) {
         </div>
         <div className={styles.msgs}>
           <h3>Messages</h3>
-          {messages.length <= 0 ? (
+          {latestMessage.length <= 0 ? (
             <div>
               <p style={{ textAlign: "center" }}>No messages yet.</p>
               <div className={styles.msgs__img}>
@@ -129,7 +119,7 @@ function Dashboard({ user }) {
             </div>
           ) : (
             <div style={{ paddingLeft: "15px" }}>
-              {messages.map((message) => {
+              {latestMessage.map((message) => {
                 return <Messages key={message.id} message={message} />;
               })}
 
@@ -139,8 +129,8 @@ function Dashboard({ user }) {
         </div>
         <div className={styles.recent}>
           <h3>Recent Activities</h3>
-          {Object.keys(data).length <= 0 ||
-          data?.recentActivities.length <= 0 ? (
+          {Object.keys(userData).length <= 0 ||
+          userData?.recentActivities.length <= 0 ? (
             <div>
               <p style={{ textAlign: "center" }}>No activity recorded yet.</p>
               <div className={styles.recent__img}>
@@ -154,7 +144,7 @@ function Dashboard({ user }) {
             </div>
           ) : (
             <ul className={styles.rct}>
-              {data?.recentActivities.map((activity, i) => {
+              {userData?.recentActivities.map((activity, i) => {
                 return <Recent key={i} activity={activity} />;
               })}
             </ul>

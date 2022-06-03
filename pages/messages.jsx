@@ -7,29 +7,32 @@ import { db } from "../firebase";
 import { collection, doc, getDocs, orderBy, query } from "firebase/firestore";
 import Header from "../Components/Header";
 import Image from "next/image";
+import { useStateValue } from "../Hooks/StateProvider";
 
 function Messages({ user }) {
-  let [messages, setMessages] = useState([]);
+  let [{ messages }, dispatch] = useStateValue();
 
   useEffect(() => {
-    async function getData() {
-      let userRef = collection(db, "users");
+    if (messages.length === 0) {
+      async function getData() {
+        let userRef = collection(db, "users");
 
-      let messagesRef = collection(doc(userRef, user.uid), "messages");
+        let messagesRef = collection(doc(userRef, user.uid), "messages");
 
-      let q = query(messagesRef, orderBy("date", "desc"));
+        let q = query(messagesRef, orderBy("date", "desc"));
 
-      const querySnapshot = await getDocs(q);
-      let messagesData = [];
-      querySnapshot.forEach((doc) => {
-        messagesData.push({ id: doc.id, ...doc.data() });
-      });
+        const querySnapshot = await getDocs(q);
+        let messagesData = [];
+        querySnapshot.forEach((doc) => {
+          messagesData.push({ id: doc.id, ...doc.data() });
+        });
 
-      setMessages(messagesData);
+        dispatch({ type: "messages", item: messagesData });
+      }
+
+      getData();
     }
-
-    getData();
-  }, [user]);
+  }, [user, dispatch, messages]);
 
   return (
     <div>
